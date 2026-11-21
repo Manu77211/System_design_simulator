@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@import "@xyflow/react/dist/style.css";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Custom React Flow styling overrides for sleek dark cyberpunk aesthetic */
+.react-flow__background {
+  background-color: #0b0f17 !important;
+}
+
+.react-flow__handle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #38bdf8;
+  background: #0b0f17;
+  transition: all 0.2s ease;
+}
+
+.react-flow__handle:hover {
+  transform: scale(1.3);
+  box-shadow: 0 0 10px #38bdf8;
+  background: #38bdf8;
+}
+
+.react-flow__edge-path {
+  stroke: #334155;
+  stroke-width: 2.5;
+  transition: stroke 0.3s ease;
+}
+
+.react-flow__edge.selected .react-flow__edge-path,
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke: #38bdf8;
+  stroke-width: 3.5;
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
+}
+
+/* Node pulse animations */
+@keyframes neon-pulse-green {
+  0%, 100% { box-shadow: 0 0 15px rgba(34, 197, 94, 0.2); }
+  50% { box-shadow: 0 0 25px rgba(34, 197, 94, 0.45); }
+}
+
+@keyframes neon-pulse-amber {
+  0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.2); }
+  50% { box-shadow: 0 0 25px rgba(245, 158, 11, 0.5); }
+}
+
+@keyframes neon-pulse-red {
+  0%, 100% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.3); transform: scale(1); }
+  25% { transform: scale(1.01) translate(-1px, 1px); }
+  75% { transform: scale(0.99) translate(1px, -1px); box-shadow: 0 0 30px rgba(239, 68, 68, 0.6); }
+}
+
+.node-healthy {
+  animation: neon-pulse-green 3s infinite ease-in-out;
+}
+
+.node-degraded {
+  animation: neon-pulse-amber 2s infinite ease-in-out;
+}
+
+.node-overloaded {
+  animation: neon-pulse-red 0.4s infinite ease-in-out;
+}
+
+.node-dead {
+  filter: grayscale(0.9) contrast(0.8);
+  opacity: 0.6;
+}
